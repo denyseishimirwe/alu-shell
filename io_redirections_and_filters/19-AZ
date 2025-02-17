@@ -1,3 +1,2 @@
 #!/bin/bash
 tr 'A' 'Z' < input.txt | tr 'c' 'e'
-
