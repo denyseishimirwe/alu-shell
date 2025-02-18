@@ -1,0 +1,6 @@
+#!/bin/bash
+# This script parses the Apache log access file and displays the IP and HTTP status code
+
+# Replace the path with the actual location of the Apache access log on your system
+awk '{print $1, $9}' /var/log/apache2/access.log
+
