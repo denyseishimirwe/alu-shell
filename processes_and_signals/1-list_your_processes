@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Display all processes for all users, including those without a TTY
 # Format output in a user-friendly way and show process hierarchy
-ps -eH -o user,start,time,command
+ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,lstart,time,command --sort=user
