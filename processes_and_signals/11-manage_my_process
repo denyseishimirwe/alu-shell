@@ -1,0 +1,31 @@
+#!/bin/bash
+
+PID_FILE="/var/run/my_process.pid"
+PROCESS_NAME="./manage_my_process"
+
+case "$1" in
+    start)
+        nohup $PROCESS_NAME & echo $! > $PID_FILE
+        echo "manage_my_process started"
+        ;;
+    stop)
+        if [ -f "$PID_FILE" ]; then
+            kill $(cat $PID_FILE) && rm -f $PID_FILE
+            echo "manage_my_process stopped"
+        else
+            echo "No PID file found. Process might not be running."
+        fi
+        ;;
+    restart)
+        if [ -f "$PID_FILE" ]; then
+            kill $(cat $PID_FILE) && rm -f $PID_FILE
+        fi
+        nohup $PROCESS_NAME & echo $! > $PID_FILE
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
